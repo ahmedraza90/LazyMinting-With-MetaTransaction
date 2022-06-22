@@ -10,7 +10,7 @@ import "./@openzeppelin/contracts/utils/cryptography/draft-EIP712.sol";
 import "./verifySignature.sol";
 
 
-contract MarketPlace is EIP712,VerifySignature{
+contract MarketPlace is EIP712,VerifySignature,Ownable{
 
       mapping(address=>uint256) public nonce;
 
@@ -40,7 +40,8 @@ contract MarketPlace is EIP712,VerifySignature{
           _voucher.signerAddress    
         )));    
       }
-      function Meta_transfer(voucher calldata _voucher,bytes32 _messageHash,bytes memory _signature,address _NFTadress,address _buyer)public payable returns(address){
+
+      function Meta_transfer(voucher calldata _voucher,bytes32 _messageHash,bytes memory _signature,address _NFTadress,address _buyer)public payable onlyOwner() returns(address){
             
             address  recoverAddress = verify(_messageHash,_signature);
 
