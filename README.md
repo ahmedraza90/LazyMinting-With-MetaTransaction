@@ -21,12 +21,12 @@ Backend APis: Nodejs is used to control offchain operations and Mongodb is used 
 3--api for getting list of nfts which are not minted for marketplace.<br />
 <br />
 FrontEnd:
-Reactjs is being to to structure frontend
-Bootstrap is being used to design website
+Reactjs is being to to structure frontend.<br />
+Bootstrap is being used to design website.<br />
 
 # ABOUT RELAYERS
-1--Hot walllet is being generated on openzpllin for relayer
-2--npm library "defender-relay-client" is being used to wrap transaction with relayers address<tx>
+1--Hot walllet is being generated on openzpllin for relayer.<br />
+2--npm library "defender-relay-client" is being used to wrap transaction with relayers address<tx>.<br />
   
 # META TRANSFER FUNCTION
 this function lies int the marketPlace(proxy) smartcontract. this function makes external calls to ERC721 contract in order mint and transfer token.
