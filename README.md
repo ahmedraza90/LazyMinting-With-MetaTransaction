@@ -9,17 +9,17 @@ after saving the buyer order relayer will mint and transfer this nft
 ![Screenshot (61)](https://user-images.githubusercontent.com/61561367/175577091-2c39797f-3746-4b43-955d-4948d6c323b5.png)
 
 # TECH STACK
-SmartContract: Solidity is being used to write smartcontracts.
-1--MarketPlace NFT: this contract act as proxy contract to mint and transfer token
-2--NFT contract: this is ERC721 token.
-3--BAFC_NFT : this token inherits NFT contract. used to instantiate this NFT contract
-4--VerifySignature : this contract act as a library to verify signature using standards of EIP712.
-
-Backend APis: Nodejs is used to control offchain operations and Mongodb is used to store Vouchers
-1--Seller api to store vouchers
-2--Buyer api to match orders
-3--api for getting list of nfts which are not minted for marketplace
-
+SmartContract: Solidity is being used to write smartcontracts.<br />
+1--MarketPlace NFT: this contract act as proxy contract to mint and transfer token<br />
+2--NFT contract: this is ERC721 token.<br />
+3--BAFC_NFT : this token inherits NFT contract. used to instantiate this NFT <br />
+4--VerifySignature : this contract act as a library to verify signature using standards of EIP712<br />
+<br />
+Backend APis: Nodejs is used to control offchain operations and Mongodb is used to store Vouchers<br />
+1--Seller api to store vouchers<br />
+2--Buyer api to match orders<br />
+3--api for getting list of nfts which are not minted for marketplace.<br />
+<br />
 FrontEnd:
 Reactjs is being to to structure frontend
 Bootstrap is being used to design website
