@@ -3,6 +3,7 @@ const voucherController = require("../controller/voucherController")
 
 
 router.post('/',voucherController.insertVoucher)
-router.get('/buy',voucherController.buyNFT)
+router.post('/:id',voucherController.buyNFT)
+router.get('/',voucherController.getNFT)
 
 module.exports = router

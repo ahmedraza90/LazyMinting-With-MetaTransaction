@@ -1,5 +1,10 @@
 import { ethers } from 'ethers';
-
+import {
+    insertVoucher,
+    insertRelayer,
+    buyNFT
+  } from "../interfaces/interfaceOffchain"
+  
 
 async function connect_wallet() {
     if(!window.ethereum) {

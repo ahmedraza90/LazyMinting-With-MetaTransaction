@@ -5,7 +5,8 @@ const bodyparser = require('body-parser')
 const cors = require("cors");
 const Voucher = require("./routes/voucherRoutes")
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8000
+
 app.use(cors());
 app.use(Voucher)
 

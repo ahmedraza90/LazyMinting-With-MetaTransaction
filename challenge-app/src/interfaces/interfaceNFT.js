@@ -3,7 +3,6 @@ import MarketPlace from "smartContracts/artifacts/contracts/MarketPlace.sol/Mark
 import BAFC_NFT from "smartContracts/artifacts/contracts/BAFC_NFT.sol/BAFC_NFT.json"
 
 
-
 const marketPlace={
     address:process.env.REACT_APP_MarketPlaceAddress,
     abi:MarketPlace.abi

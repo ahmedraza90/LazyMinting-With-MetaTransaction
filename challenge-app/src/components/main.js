@@ -14,9 +14,13 @@ import {
   createVoucher,
 } from "../helper/voucher";
 import {
-  insertVoucher
+  insertVoucher,
+  buyNFTs
 } from "../interfaces/interfaceOffchain"
 import { useState } from "react";
+
+
+
 
 
 function Lazyminting() {
@@ -26,6 +30,7 @@ function Lazyminting() {
   const [ChainId, SetChainId] = useState("");
   const [Price,setPrice] = useState(0)
   const [Uri,setUri] = useState("")
+  const [name,setName] = useState("")
 
   const bus ={
     HashedMessage:'',
@@ -33,16 +38,14 @@ function Lazyminting() {
     Voucher:''
   }
   async function wallet() {
-    
-    
     const signer = await connect_wallet();
     if (!signer) {
         alert("Install wallet first")
     }
-
-    SetSigner(signer)
+    SetSigner(signer)//circular structure \
     SetWalletAddress(await get_address(signer));
     SetChainId(await get_chainId(signer));
+    
     }
 
     async function generateVoucher(){
@@ -51,11 +54,13 @@ function Lazyminting() {
       console.log("bafc_nft",bafc_nft.address)
       console.log("WalletAddress",WalletAddress)
       const contract = await connectContract(marketPlace.address,marketPlace.abi,Signer)
+      console.log(contract)
+      console.log("kkkkk")
       const nonce = await contract.get_nonce(WalletAddress)
       console.log("nonce",parseInt(nonce._hex))
-      setUri("imagePath")
-      console.log("Uri",Uri)
+      setUri("imagePath2")
       setPrice(99)
+      console.log("Uri",Uri)
       console.log("Price",Price)  
       const {voucher} = createVoucher(marketPlace.address,parseInt(nonce._hex),ChainId,"imagePath",WalletAddress,Price)
       bus.Voucher = voucher
@@ -65,22 +70,28 @@ function Lazyminting() {
       bus.Signature = await getSignature(Signer,bus.HashedMessage)
       console.log("hashed message",bus.Signature)
       bus.Voucher.signature = bus.Signature; 
+      bus.Voucher.name = name; 
+      bus.Voucher.HashedMessage = bus.HashedMessage ;
+      bus.Voucher.contractAddress = marketPlace.address
       console.log("Voucher:::::::",bus.Voucher)
       const saving = await insertVoucher(bus.Voucher)
-      delete bus.Voucher.signature
+      // delete bus.Voucher.signature
       // console.log(saving)
 
       }
 
 
-      async function metaTransaction(){
-        const contract = await connectContract(marketPlace.address,marketPlace.abi,Signer)
-        console.log("signature",bus.Signature)
-        console.log('Voucher*****',bus.Voucher)
-        const verify = await contract.Meta_transfer(bus.Voucher,bus.HashedMessage,bus.Signature,nft.address,WalletAddress,{ value: 100 })
-        // (voucher calldata _voucher,bytes32 _messageHash,address _buyer,bytes memory _signature,address _NFTadress
-        console.log("verify",verify)
-
+      function form(){
+        var uid = document.registration.userid;
+        return uid;
+        
+      }
+      async function buyNFT(nftId){
+        try{
+          await buyNFTs(nftId)
+        }catch(e){
+          console.log(e)
+        }
       }
 
 
@@ -92,7 +103,7 @@ function Lazyminting() {
       <p>CHAINID IS: {ChainId} </p>
       <button onClick={generateVoucher}>List NFT</button>
       <p>YOUR NONCE IS:ok</p>
-      <button onClick={metaTransaction}>Buy NFT</button>
+      <button onClick={buyNFT}>Buy NFT</button>
       <p>YOUR NONCE IS:ok</p>
     </>
   );

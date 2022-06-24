@@ -1,5 +1,5 @@
 const { formatResponse } = require("../helpers/utility")
-const { InsertVoucher, getVoucher } = require("../services/voucherServices")
+const { InsertVoucher, BuyNFT, getNFTs } = require("../services/voucherServices")
 
 async function insertVoucher(req, res) {
     try {
@@ -17,11 +17,25 @@ async function insertVoucher(req, res) {
     }
 }
 
+async function getNFT(req, res) {
+    try {
+        const response = await getNFTs();
+        if (response) {
+            return res
+                .status(response.statusCode)
+                .json(response);
+        }
+
+    } catch (error) {
+        const { message, statusCode } = error;
+        res.status(statusCode || 400).json(formatResponse(statusCode || 400, "error", message));
+    }
+}
+
 async function buyNFT(req, res) {
     try {
         const { id } = req.params
-        const response = await buyNFT(id);
-        console.log(response)
+        const response = await BuyNFT(id,req.body);
         if (response) {
             return res
                 .status(response.statusCode)
@@ -36,6 +50,7 @@ async function buyNFT(req, res) {
 
 module.exports={
     insertVoucher,
-    buyNFT
+    buyNFT,
+    getNFT
     
 }
