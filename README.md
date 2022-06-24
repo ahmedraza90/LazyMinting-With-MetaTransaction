@@ -28,7 +28,7 @@ Bootstrap is being used to design website.<br />
 1--Hot walllet is being generated on openzpllin for relayer.<br />
 2--npm library "defender-relay-client" is being used to wrap transaction with relayers address<tx>.<br />
   
-# META TRANSFER FUNCTION
-this function lies int the marketPlace(proxy) smartcontract. this function makes external calls to ERC721 contract in order mint and transfer token.
+# META TRANSFER FUNCTION(Special Mint Function)
+this function lies int the marketPlace(proxy) smartcontract. this function makes external calls to ERC721 contract in order to mint and transfer token.
   ![Screenshot (63)](https://user-images.githubusercontent.com/61561367/175599779-03828c14-41a0-46ba-854d-e4767be62487.png)
 
